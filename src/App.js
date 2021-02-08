@@ -1,42 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css';
+import Order from './components/pages/Order';
+import Basket from './components/pages/Basket';
+import Checkout from './components/pages/Checkout';
+import OrderConfirmation from './components/pages/OrderConfirmation';
+import CompanyPortal from './components/pages/CompanyPortal';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    fetch(`/api/test`)
-      .then(response => response.json())
-      .then(state => this.setState( state ));
-      console.log(this.state);
-    }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <form onSubmit={this.handleSubmit}>
-            <button type="submit">Make Get Request to /api/test</button>
-          </form>
-          <p> { JSON.stringify(this.state.products) } </p>
-          <p> { this.state.products.map(x => 
-          <li>flavour: {x.flavour} price: {x.price} </li>)} </p>
-        </header>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path='/' exact component={Order} />
+          <Route path='/basket' exact component={Basket} />
+          <Route path='/checkout' exact component={Checkout} />
+          <Route path='/order-confirmation' component={OrderConfirmation} />
+          <Route path='/company-portal' component={CompanyPortal} />
+        </Switch>
+      <Footer />
+      </Router>
+    </>
+  );
 }
 
 export default App;
