@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 import Order from './components/pages/Order';
-import Basket from './components/pages/Basket';
 import Checkout from './components/pages/Checkout';
 import OrderConfirmation from './components/pages/OrderConfirmation';
 import CompanyPortal from './components/pages/CompanyPortal';
@@ -16,7 +15,6 @@ function App() {
         <Header />
         <Switch>
           <Route path='/' exact component={Order} />
-          <Route path='/basket' exact component={Basket} />
           <Route path='/checkout' exact component={Checkout} />
           <Route path='/order-confirmation' component={OrderConfirmation} />
           <Route path='/company-portal' component={CompanyPortal} />
